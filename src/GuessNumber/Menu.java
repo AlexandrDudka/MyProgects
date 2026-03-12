@@ -14,7 +14,7 @@ public class Menu {
             System.out.println(Colors.BLUE + "2. Rules" + Colors.RESET);
             System.out.println(Colors.YELLOW + "3. Best score" + Colors.RESET);
             System.out.println(Colors.RED + "4. Exit" + Colors.RESET);
-            choise = scanner.nextInt();
+            choise = InputValidator.getInt(scanner);
 
             switch (choise){
                 case 1 -> Game.startGame();

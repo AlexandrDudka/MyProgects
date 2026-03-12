@@ -10,7 +10,7 @@ public class Difficulty {
         System.out.println("3. Hard level");
         System.out.println("4. Impossible level");
 
-        int choise = scanner.nextInt();
+        int choise = InputValidator.getInt(scanner);
 
         switch (choise){
             case 1:

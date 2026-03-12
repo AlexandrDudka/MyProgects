@@ -31,7 +31,7 @@ public class Game {
             System.out.println("Attempts " + score + " of " + maxAttempts);
             System.out.println("Guess a number between 1 and " + maxNumber);
 
-            userNum = scanner.nextInt();
+            userNum = InputValidator.getInt(scanner);
             if (userNum > secretNum){
                 System.out.println(Colors.RED + "it's too big" + Colors.RESET);
             }else if (userNum < secretNum){
