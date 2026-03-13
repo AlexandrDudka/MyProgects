@@ -32,15 +32,15 @@ public class Game {
             System.out.println("Guess a number between 1 and " + maxNumber);
 
             userNum = InputValidator.getInt(scanner);
-            if (userNum > secretNum){
-                System.out.println(Colors.RED + "it's too big" + Colors.RESET);
-            }else if (userNum < secretNum){
-                System.out.println(Colors.YELLOW + "it's too small" + Colors.RESET);
-            }else{
-                System.out.println(Colors.GREEN + "Congratulation you guess a number :)" + Colors.RESET);
+            int difference = Math.abs(secretNum - userNum);
+            boolean win = showDifference(difference);
+
+            if(win){
                 numIsGuessed = true;
+
                 int finalScore = score * 10;
                 ScoreManager.addScore(finalScore);
+
                 break;
             }
         }
@@ -48,5 +48,23 @@ public class Game {
             System.out.println("Attempts are over. Game finished.");
             System.out.println("The number was: " + secretNum);
         }
+    }
+
+    public static boolean showDifference(int difference) {
+        if (difference == 0){
+            System.out.println("Congratulation you guess a number :)");
+            return true;
+        }else if (difference <= 5 ) {
+            System.out.println(Colors.RED + "Very hot" + Colors.RESET);
+        }else if (difference <= 10){
+            System.out.println(Colors.RED + "Hot" + Colors.RESET);
+        }else if (difference <= 20){
+            System.out.println(Colors.YELLOW + "Warm" + Colors.RESET);
+        }else if (difference <= 40){
+            System.out.println(Colors.BLUE + "Cold" + Colors.RESET);
+        }else {
+            System.out.println(Colors.BLUE + "Very cold" + Colors.RESET);
+        }
+        return false;
     }
 }
