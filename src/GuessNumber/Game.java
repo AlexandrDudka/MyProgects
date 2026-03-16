@@ -17,6 +17,7 @@ public class Game {
         int secretNum = generateNumber(maxNumber);
         int userNum;
         int maxAttempts;
+        NumberLine line = new NumberLine(maxNumber);
 
         switch (maxNumber){
             case 50 -> maxAttempts = 6;
@@ -29,10 +30,16 @@ public class Game {
         for (int score = maxAttempts; score > 0; score--) {
 
             System.out.println("Attempts " + score + " of " + maxAttempts);
+
+            line.showLine();
+
             System.out.println("Guess a number between 1 and " + maxNumber);
 
             userNum = InputValidator.getInt(scanner);
             int difference = Math.abs(secretNum - userNum);
+
+            line.updateNumber(userNum, difference);
+
             boolean win = showDifference(difference);
 
             if(win){
@@ -48,6 +55,8 @@ public class Game {
             System.out.println("Attempts are over. Game finished.");
             System.out.println("The number was: " + secretNum);
         }
+
+
     }
 
     public static boolean showDifference(int difference) {
@@ -57,7 +66,7 @@ public class Game {
         }else if (difference <= 5 ) {
             System.out.println(Colors.RED + "Very hot" + Colors.RESET);
         }else if (difference <= 10){
-            System.out.println(Colors.RED + "Hot" + Colors.RESET);
+            System.out.println(Colors.ORANGE + "Hot" + Colors.RESET);
         }else if (difference <= 20){
             System.out.println(Colors.YELLOW + "Warm" + Colors.RESET);
         }else if (difference <= 40){
